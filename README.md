@@ -1,5 +1,11 @@
 ﻿# 🛰 About
-A good ol' CS:GO external, please enjoy!
+Work-in-progress fully featured CS:GO external made by yours truly.
+
+## ☂️ To do
+- Add gui
+- Use fmt lib
+- Add netvar manager
+- Add cheat features lmao
 
 ## 🌌 Setup
 - Clone the repo
