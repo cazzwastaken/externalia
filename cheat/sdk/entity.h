@@ -11,6 +11,11 @@ public:
 	c_entity(const std::uintptr_t& addr) noexcept :
 		_addr(m::read<std::uintptr_t>(addr)) { }
 
+	bool operator==(const c_entity& ent) const noexcept {
+		return _addr == ent._addr;
+	}
+
+public:
 	int get_team() const noexcept {
 		return m::read<int>(_addr + team());
 	}
@@ -19,6 +24,6 @@ public:
 		m::write(_addr + spotted(), is_spotted);
 	}
 
-private:
+protected:
 	const std::uintptr_t _addr;
 };
