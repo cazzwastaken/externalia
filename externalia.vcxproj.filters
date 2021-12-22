@@ -26,5 +26,8 @@
     <ClInclude Include="cheat\memory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="cheat\sdk\entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
