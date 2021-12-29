@@ -145,12 +145,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="cheat\hacks\visuals.cpp" />
     <ClCompile Include="cheat\main.cpp" />
     <ClCompile Include="cheat\memory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cheat\globals.h" />
+    <ClInclude Include="cheat\hacks\hacks.h" />
     <ClInclude Include="cheat\memory.h" />
+    <ClInclude Include="cheat\sdk\color.h" />
     <ClInclude Include="cheat\sdk\entity.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

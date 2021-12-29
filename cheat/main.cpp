@@ -7,6 +7,7 @@
 #include <Windows.h>
 
 #include "globals.h"
+#include "hacks/hacks.h"
 
 void print(const std::string& text) noexcept {
 	std::cout << text;
@@ -52,14 +53,19 @@ int main() {
 		return 1;
 	}
 
+	std::thread{ h::visuals }.detach();
+
+	// reserve for 32 players
 	g::entity_list.reserve(32);
 
-	while (true) {
+	while (g::run) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(5));
 
+		// set our local player
 		g::local_player.set_address(m::client + o::dw_local_player);
 
-		// not in game
+		// not in game, so clear
+		// entity list and skip
 		if (g::max_players() == 0) {
 			g::entity_list.clear();
 			continue;
@@ -73,6 +79,7 @@ int main() {
 				continue;
 			}
 
+			// skip local player
 			if (entity == g::local_player) {
 				continue;
 			}
@@ -84,19 +91,13 @@ int main() {
 			);
 
 			// it exists in the list already
+			// no need to add it to the list
+			// again
 			if (result != std::end(g::entity_list)) {
 				continue;
 			}
 
 			g::entity_list.emplace_back(entity);
-		}
-
-		// this temporay, for testing the entity list vector
-		for (const auto& entity : g::entity_list) {
-			if (entity.get_team() == g::local_player.get_team())
-				continue;
-
-			entity.set_spotted(true);
 		}
 	}
 
