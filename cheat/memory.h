@@ -1,4 +1,6 @@
 #pragma once
+#define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
 
 #include <cstdint>
 #include <string>
@@ -23,9 +25,15 @@ namespace m {
 
 	// rpm wrapper
 	template <typename T>
-	T read(const std::uintptr_t& addr) noexcept;
+	constexpr T read(const std::uintptr_t& addr) noexcept {
+		T value;
+		ReadProcessMemory(handle, reinterpret_cast<const void*>(addr), &value, sizeof(T), 0);
+		return value;
+	}
 
 	// rpm wrapper
 	template <typename T>
-	void write(const std::uintptr_t& addr, const T& value) noexcept;
+	constexpr void write(const std::uintptr_t& addr, const T& value) noexcept {
+		WriteProcessMemory(handle, reinterpret_cast<void*>(addr), &value, sizeof(T), 0);
+	}
 }

@@ -1,7 +1,5 @@
 #include "memory.h"
 
-#define WIN32_LEAN_AND_MEAN
-#include <Windows.h>
 #include <TlHelp32.h>
 
 void m::process_id(const std::string name) noexcept {
@@ -53,16 +51,4 @@ bool m::close_handle() noexcept {
 		return CloseHandle(m::handle);
 
 	return false;
-}
-
-template <typename T>
-T m::read(const std::uintptr_t& addr) noexcept {
-	T value;
-	ReadProcessMemory(handle, reinterpret_cast<const void*>(addr), &value, sizeof(T), 0);
-	return value;
-}
-
-template <typename T>
-void m::write(const std::uintptr_t& addr, const T& value) noexcept {
-	WriteProcessMemory(handle, reinterpret_cast<void*>(addr), &value, sizeof(T), 0);
 }
