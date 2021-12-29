@@ -2,12 +2,14 @@
 Work-in-progress fully featured CS:GO external made by yours truly.
 
 ## ☂️ To do
-- Add gui
 - Use fmt lib
 - Add netvar manager
 - Add cheat features lmao
 
-## 🌌 Setup
+## 👀 Menu
+![menu](https://imgur.com/INmbRjb)
+
+## 🌌 Usage
 - Clone the repo
 - Open the `.sln` file in Visual Studio
 - Build in Release | x86
