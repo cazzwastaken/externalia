@@ -145,11 +145,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ext\imgui\imgui.cpp" />
+    <ClCompile Include="ext\imgui\imgui_demo.cpp" />
+    <ClCompile Include="ext\imgui\imgui_draw.cpp" />
+    <ClCompile Include="ext\imgui\imgui_impl_dx9.cpp" />
+    <ClCompile Include="ext\imgui\imgui_impl_win32.cpp" />
+    <ClCompile Include="ext\imgui\imgui_tables.cpp" />
+    <ClCompile Include="ext\imgui\imgui_widgets.cpp" />
     <ClCompile Include="src\hacks\visuals.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\memory.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ext\imgui\imconfig.h" />
+    <ClInclude Include="ext\imgui\imgui.h" />
+    <ClInclude Include="ext\imgui\imgui_impl_dx9.h" />
+    <ClInclude Include="ext\imgui\imgui_impl_win32.h" />
+    <ClInclude Include="ext\imgui\imgui_internal.h" />
+    <ClInclude Include="ext\imgui\imstb_rectpack.h" />
+    <ClInclude Include="ext\imgui\imstb_textedit.h" />
+    <ClInclude Include="ext\imgui\imstb_truetype.h" />
     <ClInclude Include="src\globals.h" />
     <ClInclude Include="src\hacks\hacks.h" />
     <ClInclude Include="src\memory.h" />
