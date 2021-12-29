@@ -7,106 +7,75 @@
 #include <Windows.h>
 
 #include "globals.h"
+#include "ui.h"
 #include "hacks/hacks.h"
 
-void print(const std::string& text) noexcept {
-	std::cout << text;
+void dialog(const std::string& text) noexcept {
+	MessageBeep(MB_ICONERROR);
+	MessageBox(
+		NULL,
+		text.c_str(),
+		"Externalia",
+		MB_OK
+	);
 }
 
-int main() {
-	print("Welcome to externalia - by cazz\n\n");
-
-	// get proc id
+int __stdcall WinMain(
+	const HINSTANCE instance,
+	const HINSTANCE prev_instance,
+	const LPSTR args,
+	const int cmd_show
+) {
 	m::process_id("csgo.exe");
 
-	// check if get proc id failed
 	if (m::id == 0) {
-		print("[ERROR] Failed to get proc id, please open csgo and try again...");
-		std::cin.get();
+		dialog("Please open cs:go!");
 		return 1;
 	}
-
-	print(std::format("[INFO] Process ID -> {}\n", m::id));
 
 	// wait for csgo to load modules
 	while (!m::module_address("serverbrowser.dll")) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(200));
 	}
 
-	// module addrs
 	m::client = m::module_address("client.dll");
 	m::engine = m::module_address("engine.dll");
 
 	if (m::client == 0 || m::engine == 0) {
-		print("[ERROR] Failed to get module addresses, please open csgo and try again...");
-		std::cin.get();
+		dialog("Failed to get module addresses.");
 		return 1;
 	}
 
-	print(std::format("[INFO] \"client.dll\" = {:#x}\n", m::client));
-	print(std::format("[INFO] \"engine.dll\" = {:#x}\n", m::engine));
-
-	// create our handle
+	// create ui
 	if (!m::open_handle()) {
-		print("[ERROR] Failed to open handle, please open csgo and try again...");
-		std::cin.get();
+		dialog("Failed to open a handle to the game.");
 		return 1;
 	}
 
-	std::thread{ h::visuals }.detach();
+	if (!u::create_window("externalia")) {
+		dialog("Failed to create window.");
+		return 1;
+	}
 
-	// reserve for 32 players
-	g::entity_list.reserve(32);
+	if (!u::create_device()) {
+		dialog("Failed to create device.");
+		u::destroy_window();
+		return 1;
+	}
+
+	u::create_menu();
 
 	while (g::run) {
+		u::render();
 		std::this_thread::sleep_for(std::chrono::milliseconds(5));
-
-		// set our local player
-		g::local_player.set_address(m::client + o::dw_local_player);
-
-		// not in game, so clear
-		// entity list and skip
-		if (g::max_players() == 0) {
-			g::entity_list.clear();
-			continue;
-		}
-
-		// populate entity list
-		for (std::uintptr_t i = 1; i <= 32; ++i) {
-			const auto entity = c_entity{ m::client + o::dw_entity_list + i * 0x10 };
-
-			if (!entity.is_valid()) {
-				continue;
-			}
-
-			// skip local player
-			if (entity == g::local_player) {
-				continue;
-			}
-
-			const auto result = std::find_if(
-				g::entity_list.begin(),
-				g::entity_list.end(),
-				[&entity](const c_entity& ent) noexcept -> bool { return ent == entity; }
-			);
-
-			// it exists in the list already
-			// no need to add it to the list
-			// again
-			if (result != std::end(g::entity_list)) {
-				continue;
-			}
-
-			g::entity_list.emplace_back(entity);
-		}
 	}
 
-	// free handle resources
-	if (!m::close_handle()) {
-		print("[ERROR] Failed to close handle...");
-		std::cin.get();
-		return 1;
-	}
+	// cleanup
+	u::destroy_menu();
+	u::destroy_device();
+	u::destroy_window();
+
+	m::close_handle();
 
 	return 0;
 }
