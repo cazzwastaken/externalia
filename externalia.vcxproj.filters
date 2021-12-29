@@ -15,30 +15,30 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="cheat\main.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cheat\memory.cpp">
+    <ClCompile Include="src\memory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cheat\hacks\visuals.cpp">
+    <ClCompile Include="src\hacks\visuals.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cheat\memory.h">
+    <ClInclude Include="src\memory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cheat\sdk\entity.h">
+    <ClInclude Include="src\sdk\entity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cheat\globals.h">
+    <ClInclude Include="src\globals.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cheat\hacks\hacks.h">
+    <ClInclude Include="src\hacks\hacks.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cheat\sdk\color.h">
+    <ClInclude Include="src\sdk\color.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

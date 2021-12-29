@@ -145,16 +145,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cheat\hacks\visuals.cpp" />
-    <ClCompile Include="cheat\main.cpp" />
-    <ClCompile Include="cheat\memory.cpp" />
+    <ClCompile Include="src\hacks\visuals.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\memory.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="cheat\globals.h" />
-    <ClInclude Include="cheat\hacks\hacks.h" />
-    <ClInclude Include="cheat\memory.h" />
-    <ClInclude Include="cheat\sdk\color.h" />
-    <ClInclude Include="cheat\sdk\entity.h" />
+    <ClInclude Include="src\globals.h" />
+    <ClInclude Include="src\hacks\hacks.h" />
+    <ClInclude Include="src\memory.h" />
+    <ClInclude Include="src\sdk\color.h" />
+    <ClInclude Include="src\sdk\entity.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
