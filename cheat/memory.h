@@ -5,6 +5,7 @@
 #include <cstdint>
 #include <string>
 
+// memory
 namespace m {
 	inline int id = 0;
 	inline void* handle = nullptr;
