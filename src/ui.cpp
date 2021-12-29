@@ -258,9 +258,20 @@ void u::render() noexcept {
 			break;
 
 		case 1:
+			ImGui::Checkbox("team glow", &v::team_glow.first);
+			ImGui::ColorEdit4("color##team_glow", v::team_glow.second.data());
+
+			ImGui::Spacing();
+
+			ImGui::Checkbox("enemy glow", &v::enemy_glow.first);
+			ImGui::ColorEdit4("color##enemy_glow", v::enemy_glow.second.data());
 			break;
 
 		case 2:
+			ImGui::Checkbox("radar", &v::radar);
+			break;
+
+		case 3:
 			break;
 		}
 

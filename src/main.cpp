@@ -65,6 +65,9 @@ int __stdcall WinMain(
 
 	u::create_menu();
 
+	std::thread{ g::entities }.detach();
+	std::thread{ h::visuals }.detach();
+
 	while (g::run) {
 		u::render();
 		std::this_thread::sleep_for(std::chrono::milliseconds(5));
