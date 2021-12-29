@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <thread>
+#include <array>
 
 #include "sdk/entity.h"
 
@@ -33,4 +34,19 @@ namespace g {
 	constexpr const std::uintptr_t glow_object_manager() noexcept {
 		return m::read<std::uintptr_t>(m::client + o::dw_glow_object_manager);
 	}
+}
+
+// vars
+namespace v {
+	inline std::pair<bool, std::array<float, 4U>> team_glow{
+		false,
+		{ 0.f, 0.f, 1.f, 1.f }
+	};
+
+	inline std::pair<bool, std::array<float, 4U>> enemy_glow{
+		false,
+		{ 1.f, 0.f, 1.f, 1.f }
+	};
+
+	inline bool radar = false;
 }

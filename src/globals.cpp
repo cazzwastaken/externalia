@@ -4,7 +4,7 @@ void g::entities() noexcept {
 	entity_list.reserve(32);
 
 	while (run) {
-		std::this_thread::sleep_for(std::chrono::milliseconds(5));
+		std::this_thread::sleep_for(std::chrono::milliseconds(25));
 
 		// set our local player
 		local_player.set_address(m::client + o::dw_local_player);
