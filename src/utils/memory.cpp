@@ -16,8 +16,9 @@ void m::process_id(const std::string name) noexcept {
 		}
 	} while (Process32Next(snap, &entry));
 
-	if (snap)
+	if (snap) {
 		CloseHandle(snap);
+	}
 }
 
 std::uintptr_t m::module_address(const std::string name) noexcept {
@@ -36,8 +37,9 @@ std::uintptr_t m::module_address(const std::string name) noexcept {
 		}
 	} while (Module32Next(snap, &entry));
 
-	if (snap)
+	if (snap) {
 		CloseHandle(snap);
+	}
 
 	return addr;
 }
@@ -46,9 +48,8 @@ bool m::open_handle() noexcept {
 	return m::handle = OpenProcess(PROCESS_ALL_ACCESS, 0, m::id);
 }
 
-bool m::close_handle() noexcept {
-	if (m::handle)
-		return CloseHandle(m::handle);
-
-	return false;
+void m::close_handle() noexcept {
+	if (m::handle) {
+		CloseHandle(m::handle);
+	}
 }

@@ -22,7 +22,7 @@ namespace m {
 
 	// proc handle stuff
 	bool open_handle() noexcept;
-	bool close_handle() noexcept;
+	void close_handle() noexcept;
 
 	// rpm wrapper
 	template <typename T>
