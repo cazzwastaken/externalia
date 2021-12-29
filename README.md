@@ -7,7 +7,7 @@ Work-in-progress fully featured CS:GO external made by yours truly.
 - Add cheat features lmao
 
 ## 👀 Menu
-![menu](https://imgur.com/INmbRjb)
+![menu](https://i.imgur.com/INmbRjb.png)
 
 ## 🌌 Usage
 - Clone the repo
