@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <thread>
 
 #include "sdk/entity.h"
 
@@ -18,6 +19,8 @@ namespace g {
 
 	inline std::vector<c_entity> entity_list;
 	inline c_entity local_player;
+
+	void entities() noexcept;
 
 	constexpr const std::uintptr_t client_state() noexcept {
 		return m::read<std::uintptr_t>(m::engine + o::dw_client_state);
