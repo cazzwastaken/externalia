@@ -258,15 +258,13 @@ void u::render() noexcept {
 			break;
 
 		case 1:
-			if (ImGui::Checkbox("team glow", &v::team_glow.first)) {
-				ImGui::ColorEdit4("color##team_glow", v::team_glow.second.data());
-			}
+			ImGui::Checkbox("team glow", &v::team_glow.first);
+			ImGui::ColorEdit4("color##team_glow", v::team_glow.second.data());
 
 			ImGui::Spacing();
 
-			if (ImGui::Checkbox("enemy glow", &v::enemy_glow.first)) {
-				ImGui::ColorEdit4("color##enemy_glow", v::enemy_glow.second.data());
-			}
+			ImGui::Checkbox("enemy glow", &v::enemy_glow.first);
+			ImGui::ColorEdit4("color##enemy_glow", v::enemy_glow.second.data());
 			break;
 
 		case 2:
