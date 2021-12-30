@@ -10,13 +10,13 @@
 #include "ui.h"
 #include "hacks/hacks.h"
 
-void dialog(const std::string& text) noexcept {
+const int dialog(const std::string& text) noexcept {
 	MessageBeep(MB_ICONERROR);
-	MessageBox(
-		NULL,
+	return MessageBox(
+		u::window ? u::window : NULL,
 		text.c_str(),
 		"Externalia",
-		MB_OK
+		MB_ICONERROR | MB_OK
 	);
 }
 
@@ -42,25 +42,21 @@ int __stdcall WinMain(
 	m::engine = m::module_address("engine.dll");
 
 	if (m::client == 0 || m::engine == 0) {
-		dialog("Failed to get module addresses.");
-		return 1;
+		return dialog("Failed to get module addresses.");
 	}
 
 	// create ui
 	if (!m::open_handle()) {
-		dialog("Failed to open a handle to the game.");
-		return 1;
+		return dialog("Failed to open a handle to the game.");
 	}
 
 	if (!u::create_window("externalia")) {
-		dialog("Failed to create window.");
-		return 1;
+		return dialog("Failed to create window.");
 	}
 
 	if (!u::create_device()) {
-		dialog("Failed to create device.");
 		u::destroy_window();
-		return 1;
+		return dialog("Failed to create device.");
 	}
 
 	u::create_menu();
