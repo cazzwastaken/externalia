@@ -34,6 +34,10 @@ namespace g {
 	constexpr const std::uintptr_t glow_object_manager() noexcept {
 		return m::read<std::uintptr_t>(m::client + o::dw_glow_object_manager);
 	}
+
+	constexpr void force_jump(const int& force_jump) noexcept {
+		m::write(m::client + o::dw_force_jump, force_jump);
+	}
 }
 
 // vars
