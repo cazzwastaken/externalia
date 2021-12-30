@@ -6,10 +6,6 @@ void h::visuals() noexcept {
 	while (g::run) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(2));
 
-		if (g::entity_list.empty()) {
-			continue;
-		}
-
 		for (const auto& entity : g::entity_list) {
 			if (!entity.is_alive()) {
 				continue;
